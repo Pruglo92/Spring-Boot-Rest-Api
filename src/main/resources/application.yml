@@ -1,0 +1,34 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: Demo project for Spring Boot
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${DATASOURCE_USERNAME:postgres}
+    password: ${DATASOURCE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  liquibase:
+    change-log: "db.changelog/db.changelog.yml"
+
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+springdoc:
+  swagger-ui:
+    operations-sorter: method
+    csrf:
+      enabled: true
+
+jwt:
+  token:
+    secret: tempsecret
+    expired: 432000000
