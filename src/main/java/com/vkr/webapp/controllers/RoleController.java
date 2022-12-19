@@ -39,7 +39,7 @@ public class RoleController {
 
 
     @Operation(summary = "Get role list",
-            security = {@SecurityRequirement(name = "bearerAuth")})
+            security = {@SecurityRequirement(name = "JwtTokenAuth")})
     @GetMapping("/role")
     public ResponseEntity<List<RoleDto>> getRoles() {
 
@@ -50,7 +50,7 @@ public class RoleController {
     }
 
     @Operation(summary = "Get user list by role id",
-            security = {@SecurityRequirement(name = "bearerAuth")})
+            security = {@SecurityRequirement(name = "JwtTokenAuth")})
     @GetMapping("/role/{roleId}/user")
     public ResponseEntity<List<UserDto>> getUsersByRole(
             @Parameter(in = ParameterIn.PATH,
@@ -65,7 +65,7 @@ public class RoleController {
     }
 
     @Operation(summary = "Add role to user",
-            security = {@SecurityRequirement(name = "bearerAuth")})
+            security = {@SecurityRequirement(name = "JwtTokenAuth")})
     @Transactional
     @PatchMapping("/role/{userId}/add")
     public ResponseEntity<UserDto> addRoleToUser(
@@ -86,7 +86,7 @@ public class RoleController {
     }
 
     @Operation(summary = "Remove role from user",
-            security = {@SecurityRequirement(name = "bearerAuth")})
+            security = {@SecurityRequirement(name = "JwtTokenAuth")})
     @Transactional
     @PatchMapping("/role/{userId}/remove")
     public ResponseEntity<UserDto> removeRoleFromUser(

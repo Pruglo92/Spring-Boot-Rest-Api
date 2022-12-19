@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset nikolaeva-mg:20221122-1 failOnError:true
+--changeset pruglo-ve:20221122-1 failOnError:true
 --comment: Create saved_results table.
 --preconditions onFail:MARK_RAN onError:HALT
 --precondition-sql-check expectedResult:0 select count(*) from information_schema.tables where table_name = 'roles';
@@ -16,7 +16,7 @@ values ('ROLE_ADMIN', 'ACTIVE');
 insert into roles (name, status)
 values ('ROLE_USER', 'ACTIVE');
 
---changeset nikolaeva-mg:20221122-2 failOnError:true
+--changeset pruglo-ve:20221122-2 failOnError:true
 --comment:  Create users table.
 --preconditions onFail:MARK_RAN onError:HALT
 --precondition-sql-check expectedResult:0 select count(*) from information_schema.tables where table_name = 'users';
@@ -59,7 +59,7 @@ values (
            1
        );
 
---changeset nikolaeva-mg:20221122-3 failOnError:true
+--changeset pruglo-ve:20221122-3 failOnError:true
 --comment: Create invest_index table.
 --preconditions onFail:MARK_RAN onError:HALT
 --precondition-sql-check expectedResult:0 select count(*) from information_schema.tables where table_name = 'invest_index';
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS invest_index (
         CONSTRAINT invest_name_uq unique
 );
 
---changeset nikolaeva-mg:20221122-4 failOnError:true
+--changeset pruglo-ve:20221122-4 failOnError:true
 --comment: Create saved_results table.
 --preconditions onFail:MARK_RAN onError:HALT
 --precondition-sql-check expectedResult:0 select count(*) from information_schema.tables where table_name = 'saved_results';

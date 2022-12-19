@@ -58,7 +58,7 @@ public class AuthenticationRestController {
         }
     }
 
-    //    @Operation(summary = "Logs out current logged in user session", description = "", security = {@SecurityRequirement(name = "bearerAuth"))
+    //    @Operation(summary = "Logs out current logged in user session", description = "", security = {@SecurityRequirement(name = "JwtTokenAuth"))
 //    @GetMapping("/user/logout")
     ResponseEntity<String> logoutUser(HttpServletRequest request, HttpServletResponse response) {
         try {

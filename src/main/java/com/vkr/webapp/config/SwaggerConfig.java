@@ -8,9 +8,9 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@OpenAPIDefinition(info = @Info(title = "REST API", version = "v1"))
+@OpenAPIDefinition(info = @Info(title = "SPRING BOOT REST API", version = "v1"))
 @SecurityScheme(
-        name = "bearerAuth",
+        name = "JwtTokenAuth",
         type = SecuritySchemeType.HTTP,
         bearerFormat = "JWT",
         scheme = "bearer",

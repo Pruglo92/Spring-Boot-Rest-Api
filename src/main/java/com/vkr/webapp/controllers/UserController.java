@@ -34,7 +34,7 @@ public class UserController {
     private final UserMapper userMapper;
 
     @Operation(summary = "Get user list",
-            security = {@SecurityRequirement(name = "bearerAuth")})
+            security = {@SecurityRequirement(name = "JwtTokenAuth")})
     @GetMapping("/user")
     public ResponseEntity<List<UserDto>> getUsers() {
 
@@ -46,7 +46,7 @@ public class UserController {
     }
 
     @Operation(summary = "Get user by user Id",
-            security = {@SecurityRequirement(name = "bearerAuth")})
+            security = {@SecurityRequirement(name = "JwtTokenAuth")})
     @GetMapping("/user/{userId}")
     public ResponseEntity<UserDto> getUserById(
             @Parameter(in = ParameterIn.PATH,
@@ -64,7 +64,7 @@ public class UserController {
 
     @Operation(summary = "Create user",
             description = "This can only be done by the logged in user. Use ROLE_USER or/and ROLE_ADMIN instead of \"string\"",
-            security = {@SecurityRequirement(name = "bearerAuth")})
+            security = {@SecurityRequirement(name = "JwtTokenAuth")})
     @Transactional
     @PostMapping("/user")
     public ResponseEntity<UserDto> createUser(
@@ -80,7 +80,7 @@ public class UserController {
 
     @Operation(summary = "Update user. Only required fields can be specified",
             description = "This can only be done by the logged in user. Use ROLE_USER or/and ROLE_ADMIN instead of \"string\"",
-            security = {@SecurityRequirement(name = "bearerAuth")})
+            security = {@SecurityRequirement(name = "JwtTokenAuth")})
     @Transactional
     @PutMapping("/user/{userId}")
     public ResponseEntity<UserDto> updateUser(
@@ -104,7 +104,7 @@ public class UserController {
 
     @Operation(summary = "Delete user",
             description = "This can only be done by the logged in user.",
-            security = {@SecurityRequirement(name = "bearerAuth")})
+            security = {@SecurityRequirement(name = "JwtTokenAuth")})
     @ResponseStatus(HttpStatus.OK)
     @Transactional
     @DeleteMapping("user/{userId}")
