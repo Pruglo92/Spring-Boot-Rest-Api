@@ -1,7 +1,5 @@
 package com.vkr.webapp.controllers;
 
-import com.vkr.webapp.dto.CreateUserDto;
-import com.vkr.webapp.dto.UpdateUserDto;
 import com.vkr.webapp.dto.UserDto;
 import com.vkr.webapp.exception.UserNotFoundException;
 import com.vkr.webapp.mapper.UserMapper;
@@ -70,9 +68,9 @@ public class UserController {
     public ResponseEntity<UserDto> createUser(
             @Parameter(in = ParameterIn.DEFAULT,
                     required = true,
-                    schema = @Schema()) @Valid @RequestBody CreateUserDto createUserDto) {
+                    schema = @Schema()) @Valid @RequestBody UserDto userDto) {
 
-        var user = userMapper.toEntity(createUserDto);
+        var user = userMapper.toEntity(userDto);
         var registeredUser = userService.register(user);
         var result = userMapper.toDto(registeredUser);
         return ResponseEntity.ok(result);
@@ -89,12 +87,12 @@ public class UserController {
                     schema = @Schema()) @PathVariable("userId") final Long userId,
             @Parameter(in = ParameterIn.DEFAULT,
                     required = true,
-                    schema = @Schema()) @Valid @RequestBody UpdateUserDto updateUserDto) {
+                    schema = @Schema()) @Valid @RequestBody UserDto userDto) {
 
         final var currentUser = userService.getCurrentUser();
         var targetUser = userService.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User id " + userId + " was not found"));
-        var sourceUser = userMapper.toEntity(updateUserDto);
+        var sourceUser = userMapper.toEntity(userDto);
         var updatedUser = userService.updateUser(targetUser, sourceUser);
 
         var result = userMapper.toDto(updatedUser);
