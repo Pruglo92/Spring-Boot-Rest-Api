@@ -1,9 +1,7 @@
 package com.vkr.webapp.service.impl;
 
+import com.vkr.webapp.dto.SavedResultDto;
 import com.vkr.webapp.entity.SavedResult;
-import com.vkr.webapp.exception.SavedResultNotFoundException;
-import com.vkr.webapp.exception.UserCreateException;
-import com.vkr.webapp.exception.UserNotFoundException;
 import com.vkr.webapp.mapper.SavedResultMapper;
 import com.vkr.webapp.repository.SavedResultRepository;
 import com.vkr.webapp.service.SavedResultService;
@@ -25,10 +23,15 @@ public class SavedResultServiceImpl implements SavedResultService {
 
     private final SavedResultMapper savedResultMapper;
 
+//    @Override
+//    public Optional<SavedResult> getById(Long id) {
+//        return savedResultRepository.findById(id)
+//                .orElseThrow(() -> new SavedResultNotFoundException("Ops saved result not found"));
+//    }
+
     @Override
-    public SavedResult getById(Long id) {
-        return savedResultRepository.findById(id)
-                .orElseThrow(() -> new SavedResultNotFoundException("Ops saved result not found"));
+    public Optional<SavedResult> findById(Long id) {
+        return savedResultRepository.findById(id);
     }
 
     @Override
@@ -40,10 +43,10 @@ public class SavedResultServiceImpl implements SavedResultService {
 
     @Override
     @Transactional
-    public SavedResult update(SavedResult targetSavedResult, SavedResult sourceSavedResult) {
-        var result = savedResultMapper.update(targetSavedResult, sourceSavedResult);
+    public SavedResultDto update(SavedResult entity, SavedResultDto dto) {
+        var result = savedResultMapper.update(entity, dto);
         log.info("Saved result id {} was updated", result.getId());
-        return result;
+        return savedResultMapper.toDto(result);
     }
 
     @Override

@@ -1,7 +1,8 @@
 package com.vkr.webapp.service.impl;
 
-import com.vkr.webapp.entity.User;
+import com.vkr.webapp.dto.UserDto;
 import com.vkr.webapp.entity.Role;
+import com.vkr.webapp.entity.User;
 import com.vkr.webapp.exception.UserCreateException;
 import com.vkr.webapp.exception.UserNotFoundException;
 import com.vkr.webapp.exception.UserSaveException;
@@ -77,10 +78,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User updateUser(User targetUser, User sourceUser) {
-        var result = userMapper.update(targetUser, sourceUser);
-        log.info("user id {} was updated", result.getId());
-        return result;
+    public UserDto updateUser(User entity, UserDto dto) {
+        var result = userMapper.update(entity, dto);
+        log.info("user id {} was updated", entity.getId());
+        return userMapper.toDto(result);
     }
 
     @Override
@@ -134,15 +135,17 @@ public class UserServiceImpl implements UserService {
         return savedUser;
     }
 
-    @Override
-    public User removeRole(User user, Long roleId) {
-        return null;
-    }
-
-    @Override
-    public User removeVmGroup(User user, Long vmGroupId) {
-        return null;
-    }
+//    @Override
+//    @Transactional
+//    public User removeRole(User user, final Long roleId) {
+//        if (!(user.getRole().getId().equals(roleId))) {
+//            throw new UserSaveException("user id " + user.getId() + " does not have this role");
+//        }
+//        user.setRole(null);
+//        var savedUser = userRepository.save(user);
+//        log.info("role id {} was removed from user id {}", roleId, user.getId());
+//        return savedUser;
+//    }
 
     @Override
     public boolean hasRole(final User user, final String role) {

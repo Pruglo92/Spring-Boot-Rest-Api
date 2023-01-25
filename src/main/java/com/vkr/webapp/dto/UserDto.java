@@ -2,7 +2,6 @@ package com.vkr.webapp.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.vkr.webapp.entity.Role;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.validation.constraints.*;
@@ -11,8 +10,6 @@ import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record UserDto(
 
-        @NotNull
-        @Positive
         @JsonInclude(JsonInclude.Include.NON_NULL)
         Long id,
 
@@ -20,6 +17,11 @@ public record UserDto(
         @NotBlank
         @JsonInclude(JsonInclude.Include.NON_NULL)
         String username,
+
+        @Schema(defaultValue = "test_password_user1")
+        @NotBlank
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        String password,
 
         @Schema(defaultValue = "boris")
         @NotBlank
@@ -44,7 +46,7 @@ public record UserDto(
         @Schema
         @NotNull
         @JsonInclude(JsonInclude.Include.NON_NULL)
-        Role role,
+        RoleDto role,
 
         @PastOrPresent
         @JsonInclude(JsonInclude.Include.NON_NULL)

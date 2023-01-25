@@ -1,7 +1,8 @@
 package com.vkr.webapp.service;
 
-import com.vkr.webapp.entity.User;
+import com.vkr.webapp.dto.UserDto;
 import com.vkr.webapp.entity.Role;
+import com.vkr.webapp.entity.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,7 @@ public interface UserService {
 
     User save(User user);
 
-    User updateUser(User targetUser, User sourceUser);
+    UserDto updateUser(User entity, UserDto dto);
 
     User getCurrentUser();
 
@@ -34,9 +35,8 @@ public interface UserService {
 
     User addRole(User user, Role role);
 
-    User removeRole(User user, Long roleId);
+//    User removeRole(User user, Long roleId);
 
-    User removeVmGroup(User user, Long vmGroupId);
 
     boolean hasRole(User user, String role);
 }

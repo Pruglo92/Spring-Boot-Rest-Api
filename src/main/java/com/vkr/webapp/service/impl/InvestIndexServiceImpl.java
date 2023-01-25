@@ -31,7 +31,7 @@ public class InvestIndexServiceImpl implements InvestIndexService {
 
     @Override
     public InvestIndex findByInvestIndexName(String investIndexName) {
-        return investIndexRepository.findByInvestIndexName(investIndexName);
+        return investIndexRepository.findByInvestName(investIndexName);
     }
 
     @Override

@@ -89,15 +89,11 @@ public class UserController {
                     required = true,
                     schema = @Schema()) @Valid @RequestBody UserDto userDto) {
 
-        final var currentUser = userService.getCurrentUser();
         var targetUser = userService.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User id " + userId + " was not found"));
-        var sourceUser = userMapper.toEntity(userDto);
-        var updatedUser = userService.updateUser(targetUser, sourceUser);
+        var updatedUser = userService.updateUser(targetUser, userDto);
 
-        var result = userMapper.toDto(updatedUser);
-
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(updatedUser);
     }
 
     @Operation(summary = "Delete user",

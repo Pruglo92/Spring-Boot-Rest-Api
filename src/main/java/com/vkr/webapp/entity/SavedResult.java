@@ -44,7 +44,7 @@ public class SavedResult extends BaseEntity {
     private Integer totalAmount;
 
     @ManyToOne
-    @JoinColumn(name = "users_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne

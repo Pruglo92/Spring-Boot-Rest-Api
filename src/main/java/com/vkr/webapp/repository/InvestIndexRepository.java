@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface InvestIndexRepository extends JpaRepository<InvestIndex, Long> {
 
-    InvestIndex findByInvestIndexName(String investIndexName);
+    InvestIndex findByInvestName(String investName);
 
-    void deleteInvestIndexByInvestName(String investIndexName);
+    void deleteInvestIndexByInvestName(String investName);
 }

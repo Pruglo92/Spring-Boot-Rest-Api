@@ -1,15 +1,13 @@
 package com.vkr.webapp.security.jwt;
 
-import com.vkr.webapp.entity.User;
 import com.vkr.webapp.entity.Role;
+import com.vkr.webapp.entity.User;
 import com.vkr.webapp.entity.enums.Status;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public final class JwtUserFactory {
 
