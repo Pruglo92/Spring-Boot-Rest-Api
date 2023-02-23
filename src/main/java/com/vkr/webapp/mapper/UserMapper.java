@@ -3,13 +3,15 @@ package com.vkr.webapp.mapper;
 import com.vkr.webapp.dto.UserDto;
 import com.vkr.webapp.entity.User;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-@Mapper
+@Mapper/*(uses = {RoleMapper.class})*/
 public interface UserMapper {
-    UserDto toDto(User user);
+    UserDto toDto(User entity);
 
-    User toEntity(UserDto userDto);
+    User toEntity(UserDto dto);
 
-    User update(@MappingTarget User targetUser, User sourceUser);
+    @Mapping(target = "id", ignore = true)
+    User update(@MappingTarget User entity, UserDto dto);
 }

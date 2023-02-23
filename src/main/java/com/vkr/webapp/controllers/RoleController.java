@@ -85,26 +85,26 @@ public class RoleController {
         return ResponseEntity.ok(result);
     }
 
-    @Operation(summary = "Remove role from user",
-            security = {@SecurityRequirement(name = "JwtTokenAuth")})
-    @Transactional
-    @PatchMapping("/role/{userId}/remove")
-    public ResponseEntity<UserDto> removeRoleFromUser(
-            @Parameter(in = ParameterIn.PATH,
-                    description = "id of user",
-                    required = true,
-                    schema = @Schema()) @PathVariable("userId") final Long userId,
-            @Parameter(in = ParameterIn.DEFAULT,
-                    description = "id of role",
-                    required = true,
-                    schema = @Schema()) @RequestParam("roleId") final Long roleId) {
-
-        var userById = userService.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User id " + userId + " was not found"));
-
-        var savedUser = userService.removeRole(userById, roleId);
-        var result = userMapper.toDto(savedUser);
-
-        return ResponseEntity.ok(result);
-    }
+//    @Operation(summary = "Remove role from user",
+//            security = {@SecurityRequirement(name = "JwtTokenAuth")})
+//    @Transactional
+//    @PatchMapping("/role/{userId}/remove")
+//    public ResponseEntity<UserDto> removeRoleFromUser(
+//            @Parameter(in = ParameterIn.PATH,
+//                    description = "id of user",
+//                    required = true,
+//                    schema = @Schema()) @PathVariable("userId") final Long userId,
+//            @Parameter(in = ParameterIn.DEFAULT,
+//                    description = "id of role",
+//                    required = true,
+//                    schema = @Schema()) @RequestParam("roleId") final Long roleId) {
+//
+//        var userById = userService.findById(userId)
+//                .orElseThrow(() -> new UserNotFoundException("User id " + userId + " was not found"));
+//
+//        var savedUser = userService.removeRole(userById, roleId);
+//        var result = userMapper.toDto(savedUser);
+//
+//        return ResponseEntity.ok(result);
+//    }
 }

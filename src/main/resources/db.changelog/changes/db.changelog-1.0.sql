@@ -75,10 +75,10 @@ CREATE TABLE IF NOT EXISTS invest_index (
 --precondition-sql-check expectedResult:0 select count(*) from information_schema.tables where table_name = 'saved_results';
 CREATE TABLE IF NOT EXISTS saved_results (
     id                BIGSERIAL   PRIMARY KEY,
-    invest_index_id    INT         NOT NULL,
+    invest_index_id   INT         NOT NULL,
     FOREIGN KEY (invest_index_id) REFERENCES invest_index (id),
-    users_id          INT         NOT NULL,
-    FOREIGN KEY (users_id) REFERENCES users (id),
+    user_id           INT         NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id),
     period_num        INT         NOT NULL,
     interest_rate     REAL        NOT NULL,
     init_sum          REAL        NOT NULL,

@@ -6,5 +6,7 @@ import org.mapstruct.Mapper;
 
 @Mapper
 public interface RoleMapper {
-    RoleDto toDto(Role role);
+    RoleDto toDto(Role entity);
+
+    Role toEntity(RoleDto dto);
 }

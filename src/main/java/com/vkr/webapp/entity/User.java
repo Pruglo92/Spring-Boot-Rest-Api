@@ -46,12 +46,10 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @NotNull
-    @OneToOne
-    @JoinColumn(name = "role_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "role_id")
     private Role role;
 
-    @NotNull
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<SavedResult> savedResults;
 

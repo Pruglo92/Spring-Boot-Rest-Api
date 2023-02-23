@@ -13,6 +13,6 @@ public class BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "ID", updatable = false, nullable = false)
     private Long id;
 }

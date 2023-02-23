@@ -1,11 +1,11 @@
 package com.vkr.webapp.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vkr.webapp.entity.enums.Status;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -20,7 +20,6 @@ public class Role extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "role", fetch = FetchType.LAZY)
-    private User user;
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+    private List<User> users;
 }
