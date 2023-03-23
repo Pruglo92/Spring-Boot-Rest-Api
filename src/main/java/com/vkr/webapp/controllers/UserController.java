@@ -3,6 +3,7 @@ package com.vkr.webapp.controllers;
 import com.vkr.webapp.dto.UserDto;
 import com.vkr.webapp.exception.UserNotFoundException;
 import com.vkr.webapp.mapper.UserMapper;
+import com.vkr.webapp.service.PrometheusService;
 import com.vkr.webapp.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -30,6 +31,7 @@ public class UserController {
 
     private final UserService userService;
     private final UserMapper userMapper;
+    private final PrometheusService prometheusService;
 
     @Operation(summary = "Get user list",
             security = {@SecurityRequirement(name = "JwtTokenAuth")})
@@ -39,6 +41,8 @@ public class UserController {
         var resultList = userService.getAll().stream()
                 .map(userMapper::toDto)
                 .toList();
+
+        prometheusService.addInYml();
 
         return ResponseEntity.ok(resultList);
     }
