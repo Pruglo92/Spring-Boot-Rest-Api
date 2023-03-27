@@ -48,11 +48,9 @@ public record UserDto(
         @JsonInclude(JsonInclude.Include.NON_NULL)
         RoleDto role,
 
-        @PastOrPresent
         @JsonInclude(JsonInclude.Include.NON_NULL)
         LocalDateTime dateOfCreated,
 
-        @PastOrPresent
         @JsonInclude(JsonInclude.Include.NON_NULL)
         LocalDateTime dateOfLastVisit
 ) {
