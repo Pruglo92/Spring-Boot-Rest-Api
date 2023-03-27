@@ -107,7 +107,6 @@ public class UserController {
                     required = true,
                     schema = @Schema()) @PathVariable("userId") final Long userId) {
 
-        final var currentUser = userService.getCurrentUser();
         var user = userService.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User id " + userId + " was not found"));
 
