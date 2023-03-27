@@ -17,7 +17,6 @@ spring:
   liquibase:
     change-log: "db.changelog/db.changelog.yml"
 
-
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
